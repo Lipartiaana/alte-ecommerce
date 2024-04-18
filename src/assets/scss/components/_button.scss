@@ -36,12 +36,13 @@
     }
   }
 
-  &--white {
-    background: var(--neutral-white-w900);
-    color: var(--neutral-black-b500);
+  &--link {
+    background: transparent;
+    border: none;
+    color: var(--neutral-black-b900);
 
     &:hover {
-      background: var(--neutral-white-w200);
+      text-decoration: underline;
     }
   }
 
