@@ -1,1 +1,28 @@
 <alte-hero-banner />
+
+<div class="container features">
+  @for (feature of features; track feature) {
+  <alte-feature-card
+    [icon]="feature.icon"
+    [title]="feature.title"
+    [description]="feature.description"
+  />
+  }
+</div>
+
+<div class="container products">
+  <div class="heading">
+    <div class="heading__small">Shop Now</div>
+    <div class="heading__big">Best Selling</div>
+  </div>
+  <div class="bestsellers">
+    @for (bestseller of bestsellers; track bestseller) {
+    <alte-product-card
+      [image]="bestseller.image"
+      [title]="bestseller.title"
+      [isInStock]="bestseller.isInStock"
+      [price]="bestseller.price"
+    />
+    }
+  </div>
+</div>
