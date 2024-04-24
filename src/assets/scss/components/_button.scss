@@ -4,6 +4,8 @@
   font-size: var(--font-size-14);
   font-weight: 500;
   cursor: pointer;
+  outline: none;
+  border: none;
 
   &--default {
     width: 133px;
@@ -54,5 +56,17 @@
     &:hover {
       background: var(--neutral-white-w200);
     }
+  }
+
+  &--disabled {
+    background: var(--neutral-black-b200);
+    color: var(--neutral-black-b500);
+    cursor: not-allowed;
+  }
+
+  &--block {
+    width: 100%;
+    display: block;
+    text-align: center;
   }
 }

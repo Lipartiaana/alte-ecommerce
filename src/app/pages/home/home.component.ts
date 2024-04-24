@@ -3,7 +3,7 @@ import { HeroBannerComponent } from '../../components/hero-banner/hero-banner.co
 import { FeatureCardComponent } from '../../components/feature-card/feature-card.component';
 import { FEATURES } from '../../data/features';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
-import { BESTSELLERS } from '../../data/bestselers';
+import { BESTSELLERS } from '../../data/bestsellers';
 
 @Component({
   selector: 'alte-home',

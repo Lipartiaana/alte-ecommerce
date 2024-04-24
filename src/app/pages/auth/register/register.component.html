@@ -1,1 +1,27 @@
-<p>register works!</p>
+<alte-auth-head title="Sign Up" />
+
+<div class="auth-container">
+  <form [formGroup]="form">
+    <alte-input
+      label="Name"
+      placeholder="Enter your name"
+      formControlName="name"
+    />
+    <alte-input
+      label="Email"
+      placeholder="Enter your email"
+      formControlName="email"
+      type="email"
+    />
+    <alte-input
+      label="Password"
+      placeholder="Enter your password"
+      formControlName="password"
+      type="password"
+    />
+
+    <div class="auth-actions">
+      <alte-button block (click)="submit()">Sign In</alte-button>
+    </div>
+  </form>
+</div>
