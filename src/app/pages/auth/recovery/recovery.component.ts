@@ -8,4 +8,8 @@ import { AuthHeadComponent } from '../auth-head/auth-head.component';
   styleUrls: ['./recovery.component.scss', '../auth.style.scss'],
   imports: [AuthHeadComponent],
 })
-export class RecoveryComponent {}
+export class RecoveryComponent {
+  isEmailSent: boolean = false;
+  isOobCodeValid: boolean = false;
+  isPasswordChanged: boolean = false;
+}

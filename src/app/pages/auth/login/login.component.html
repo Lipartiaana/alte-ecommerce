@@ -1,6 +1,11 @@
 <alte-auth-head title="Sign In" />
 
 <div class="auth-container">
+  @if (errorMessage){
+  <alte-alert type="error" [message]="errorMessage" />
+  } @if (successMessage){
+  <alte-alert type="success" [message]="successMessage" />
+  }
   <form [formGroup]="form">
     <alte-input
       formControlName="email"
