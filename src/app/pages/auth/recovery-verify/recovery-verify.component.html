@@ -1,4 +1,4 @@
-<alte-auth-head title="Password Recovery" />
+<alte-auth-head title="Reset Password" />
 
 <div class="auth-container">
   @if (errorMessage){
@@ -13,14 +13,18 @@
   </div>
   <form [formGroup]="form">
     <alte-input
-      label="Email"
-      placeholder="Enter your email"
-      formControlName="email"
-      type="email"
+      label="Password"
+      placeholder="Enter your password"
+      formControlName="newPassword"
+      type="password"
     />
 
     <div class="auth-actions">
-      <alte-button block (click)="sendLink()">Send reset link</alte-button>
+      <alte-button block (click)="resetPassword()">
+        Reset password
+      </alte-button>
     </div>
+
+    <!-- პაროლს ვცვლით გატესტილია 00:25 -->
   </form>
 </div>

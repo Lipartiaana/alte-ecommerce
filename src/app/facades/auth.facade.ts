@@ -1,8 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { AuthResponce, AuthPayload } from '../core/interfaces/auth.payload';
-import { Observable, tap } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { StorageService } from '../core/services';
+import { Router } from '@angular/router';
+import { User } from '../core/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +12,11 @@ import { StorageService } from '../core/services';
 export class AuthFacade {
   authService = inject(AuthService);
   storageService = inject(StorageService);
+  router = inject(Router);
+
+  get isAuthenticated() {
+    return !!this.storageService.getItem('token');
+  }
 
   get token() {
     return this.storageService.getItem('token');
@@ -49,7 +56,27 @@ export class AuthFacade {
     );
   }
 
+  sendOobCode(email: string) {
+    return this.authService.sendOobCode(email);
+  }
+
+  resetPassword(oobCode: string, newPassword: string) {
+    return this.authService.resetPassword(oobCode, newPassword);
+  }
+
   logout() {
     this.storageService.clear();
+    this.router.navigate(['/']);
+  }
+
+  getUser(): Observable<User> {
+    return this.authService.lookup(this.token).pipe(
+      map((res) => {
+        if (res.users.length) {
+          return res.users[0];
+        }
+        return {} as User;
+      })
+    );
   }
 }

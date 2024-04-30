@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { AuthHeadComponent } from '../auth-head/auth-head.component';
-import { AlertComponent } from '../../../components/alert/alert.component';
 import { InputComponent } from '../../../components/input/input.component';
+import { AlertComponent } from '../../../components/alert/alert.component';
 import {
   FormControl,
   FormGroup,
@@ -11,14 +11,12 @@ import {
 } from '@angular/forms';
 import { ButtonComponent } from '../../../ui/button/button.component';
 import { AuthFacade } from '../../../facades';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, catchError, takeUntil, throwError } from 'rxjs';
 
 @Component({
-  selector: 'alte-recovery',
+  selector: 'alte-recovery-verify',
   standalone: true,
-  templateUrl: './recovery.component.html',
-  styleUrls: ['./recovery.component.scss', '../auth.style.scss'],
   imports: [
     AuthHeadComponent,
     InputComponent,
@@ -27,25 +25,47 @@ import { Subject, catchError, takeUntil, throwError } from 'rxjs';
     FormsModule,
     ButtonComponent,
   ],
+  templateUrl: './recovery-verify.component.html',
+  styleUrls: ['./recovery-verify.component.scss', '../auth.style.scss'],
 })
-export class RecoveryComponent implements OnDestroy {
+export class RecoveryVerifyComponent implements OnInit, OnDestroy {
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    oobCode: new FormControl('', Validators.required),
+    newPassword: new FormControl('', Validators.required),
   });
 
   errorMessage: string | null = null;
   successMessage: string | null = null;
 
   authFacade = inject(AuthFacade);
+  route = inject(ActivatedRoute);
+  router = inject(Router);
+
   sub$ = new Subject();
 
-  sendLink() {
+  ngOnInit() {
+    this.route.queryParams.pipe(takeUntil(this.sub$)).subscribe((params) => {
+      if (params['oobCode']) {
+        this.form.patchValue({
+          oobCode: params['oobCode'],
+        });
+      }
+    });
+  }
+
+  resetPassword() {
     this.form.markAllAsTouched();
     if (this.form.invalid) {
       return;
     }
+
+    const { oobCode, newPassword } = this.form.value as {
+      oobCode: string;
+      newPassword: string;
+    };
+
     this.authFacade
-      .sendOobCode(this.form.value.email as string)
+      .resetPassword(oobCode, newPassword)
       .pipe(
         takeUntil(this.sub$),
         catchError(({ error }) => {
@@ -54,12 +74,15 @@ export class RecoveryComponent implements OnDestroy {
         })
       )
       .subscribe((res) => {
-        console.log('Email sent', res);
-        this.successMessage = 'Email sent. Check your inbox.';
+        this.successMessage = 'Password reset succesfuly.';
+        setTimeout(() => {
+          this.router.navigate(['/auth']);
+        }, 2000);
+        console.log('reset', res);
       });
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.sub$.next(null);
     this.sub$.complete();
   }

@@ -1,0 +1,45 @@
+<alte-auth-head title="My Account" />
+
+<div class="container my_account">
+  <div class="left">
+    <ul class="side-menu">
+      <li routerLink="/profile/orders" routerLinkActive="active">
+        <div class="side-menu__icon">
+          <img src="assets/icons/Cart.svg" alt="cart" />
+        </div>
+        <div class="side-menu__name">Orders</div>
+      </li>
+      <li routerLink="/profile/wishlist" routerLinkActive="active">
+        <div class="side-menu__icon">
+          <img src="assets/icons/Heart.svg" alt="heart" />
+        </div>
+        <div class="side-menu__name">Wishlist</div>
+      </li>
+      <li routerLink="/profile/address" routerLinkActive="active">
+        <div class="side-menu__icon">
+          <img src="assets/icons/Delivery.svg" alt="delivery" />
+        </div>
+        <div class="side-menu__name">Address</div>
+      </li>
+      <li routerLink="/profile/password" routerLinkActive="active">
+        <div class="side-menu__icon">
+          <img src="assets/icons/Key.svg" alt="key" />
+        </div>
+        <div class="side-menu__name">Password</div>
+      </li>
+      <li routerLink="/profile/myProfile" routerLinkActive="active">
+        <div class="side-menu__icon">
+          <img src="assets/icons/User.svg" alt="user" />
+        </div>
+        <div class="side-menu__name">Account Detail</div>
+      </li>
+      <li>
+        <div class="side-menu__icon">
+          <img src="assets/icons/Logout.svg" alt="logout" />
+        </div>
+        <a class="side-menu__name" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+  <div class="right"><router-outlet /></div>
+</div>

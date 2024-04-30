@@ -3,6 +3,7 @@ import { ApiService } from '../core/services';
 import { environment } from '../../environments/environment';
 import { AuthResponce, AuthPayload } from '../core/interfaces/auth.payload';
 import { Observable } from 'rxjs';
+import { User } from '../core/interfaces/user';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,28 @@ export class AuthService extends ApiService {
     return this.post(`accounts:signInWithPassword?key=${this.apiKey}`, {
       ...payload,
       returnSecureTocken: true,
+    });
+  }
+
+  sendOobCode(email: string) {
+    return this.post(`accounts:sendOobCode?key=${this.apiKey}`, {
+      requestType: 'PASSWORD_RESET',
+      email,
+    });
+  }
+
+  resetPassword(oobCode: string, newPassword: string) {
+    return this.post(`accounts:resetPassword?key=${this.apiKey}`, {
+      oobCode,
+      newPassword,
+    });
+  }
+
+  lookup(idToken: string) {
+    return this.post<{
+      users: User[];
+    }>(`accounts:lookup?key=${this.apiKey}`, {
+      idToken,
     });
   }
 }
