@@ -14,7 +14,18 @@
         <a routerLink="/">Home</a>
       </li>
       <li>
-        <a routerLink="/categories">Categories</a>
+        <a [cdkMenuTriggerFor]="menu">Categories</a>
+        <ng-template #menu>
+          <div class="menu">
+            <ul>
+              @for (category of categories$ | async; track category.id) {
+              <li routerLink="/category/{{ category.id }}">
+                {{ category.name }}
+              </li>
+              }
+            </ul>
+          </div>
+        </ng-template>
       </li>
       <li>
         <a routerLink="/about">About</a>

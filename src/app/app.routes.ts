@@ -19,7 +19,7 @@ export const routes: Routes = [
           import('./pages/auth/auth.routes').then((m) => m.authRoutes),
       },
       {
-        path: 'categories',
+        path: 'category/:id',
         component: CategoriesComponent,
       },
       {

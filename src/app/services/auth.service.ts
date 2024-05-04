@@ -44,4 +44,12 @@ export class AuthService extends ApiService {
       idToken,
     });
   }
+
+  changePassword(idToken: string, password: string) {
+    return this.post<AuthResponce>(`accounts:update?key=${this.apiKey}`, {
+      idToken,
+      password,
+      returnSecureToken: true,
+    });
+  }
 }

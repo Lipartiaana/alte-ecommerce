@@ -34,7 +34,7 @@ export class AuthFacade {
     return this.authService.register(payload).pipe(
       tap((res) => {
         this.storageService.setItem('token', res.idToken);
-        this.storageService.setItem('refreshTocken', res.refreshToken);
+        this.storageService.setItem('refreshToken', res.refreshToken);
         this.storageService.setItem('user', {
           email: res.email,
           id: res.localId,
@@ -47,7 +47,7 @@ export class AuthFacade {
     return this.authService.login(payload).pipe(
       tap((res) => {
         this.storageService.setItem('token', res.idToken);
-        this.storageService.setItem('refreshTocken', res.refreshToken);
+        this.storageService.setItem('refreshToken', res.refreshToken);
         this.storageService.setItem('user', {
           email: res.email,
           id: res.localId,
@@ -76,6 +76,19 @@ export class AuthFacade {
           return res.users[0];
         }
         return {} as User;
+      })
+    );
+  }
+
+  changePassword(password: string) {
+    return this.authService.changePassword(this.token, password).pipe(
+      tap((res) => {
+        this.storageService.setItem('token', res.idToken);
+        this.storageService.setItem('refreshToken', res.refreshToken);
+        this.storageService.setItem('user', {
+          email: res.email,
+          id: res.localId,
+        });
       })
     );
   }
