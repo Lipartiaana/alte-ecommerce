@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { ProductService } from '../core/services/product.service';
+import { ProductService } from '../services/product.service';
 import { map } from 'rxjs';
 import { Product } from '../core/interfaces/product';
 
@@ -24,7 +24,7 @@ export class ProductFacade {
   }
 
   getProductsById(id: string) {
-    return this.productService.geyProduct(id).pipe(
+    return this.productService.getProduct(id).pipe(
       map(
         (product) =>
           ({

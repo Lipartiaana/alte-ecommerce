@@ -22,7 +22,7 @@ html {
   padding: 0 16px;
 }
 
-.conatiner--fluid {
+.container--fluid {
   width: 100%;
   padding: 0 16px;
 }
@@ -45,4 +45,15 @@ html {
     text-transform: capitalize;
     color: var(--neutral-black-b900);
   }
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

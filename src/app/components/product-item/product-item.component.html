@@ -1,0 +1,15 @@
+<div class="product-item">
+  <div class="product-item__image">
+    <img src="assets/cover.png" alt="product" />
+  </div>
+
+  <div class="product-item__name">{{ product?.name }}</div>
+  <div class="product-item__info">
+    <div *ngIf="product?.inStock" class="product-item__info--stock">
+      {{ product?.inStock | stock }}
+    </div>
+    <div class="product-item__info--price">
+      {{ product?.price | currency : "USD" : "$" }}
+    </div>
+  </div>
+</div>

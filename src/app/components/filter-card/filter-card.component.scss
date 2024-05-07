@@ -1,0 +1,13 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .title {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 175%;
+    color: var(--neutral-black-b900);
+  }
+}
