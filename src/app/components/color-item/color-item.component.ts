@@ -1,4 +1,11 @@
-import { Component, Input, booleanAttribute } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  booleanAttribute,
+} from '@angular/core';
+import { Color } from '../../core/interfaces/color';
 
 @Component({
   selector: 'alte-color-item',
@@ -8,9 +15,11 @@ import { Component, Input, booleanAttribute } from '@angular/core';
   styleUrl: './color-item.component.scss',
 })
 export class ColorItemComponent {
-  @Input() color: string = '#4078ff';
+  @Input() color: Color = {} as Color;
   @Input({
     transform: booleanAttribute,
   })
-  active = true;
+  active = false;
+
+  @Output() selected: EventEmitter<Color> = new EventEmitter<Color>();
 }

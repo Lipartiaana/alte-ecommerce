@@ -19,7 +19,12 @@
           <div class="menu">
             <ul>
               @for (category of categories$ | async; track category.id) {
-              <li routerLink="/category/{{ category.id }}">
+              <li
+                routerLink="/category"
+                [queryParams]="{
+                  category: [category.id]
+                }"
+              >
                 {{ category.name }}
               </li>
               }

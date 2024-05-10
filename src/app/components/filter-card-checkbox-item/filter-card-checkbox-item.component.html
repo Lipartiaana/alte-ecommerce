@@ -1,1 +1,4 @@
-<label><input type="checkbox" /> {{ label }}</label>
+<label
+  ><input type="checkbox" [checked]="active" (change)="changed($event)" />
+  {{ category.name }}</label
+>

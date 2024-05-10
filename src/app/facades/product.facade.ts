@@ -9,7 +9,12 @@ import { Product } from '../core/interfaces/product';
 export class ProductFacade {
   productService = inject(ProductService);
 
-  getProducts() {
+  getProducts(params: {
+    categoryId: string[];
+    colorId?: string;
+    size?: string;
+  }) {
+    console.log(params);
     return this.productService.getProducts().pipe(
       map((products) => {
         return Object.keys(products).map(
@@ -19,6 +24,26 @@ export class ProductFacade {
               id: key,
             } as Product)
         );
+      }),
+      map((products) => {
+        return products.filter((product) => {
+          if (
+            params.categoryId.length &&
+            !params.categoryId.includes(product.categoryId)
+          ) {
+            return false;
+          }
+
+          if (params.colorId && params.colorId !== product.colorId) {
+            return false;
+          }
+
+          if (params.size && params.size !== product.size) {
+            return false;
+          }
+
+          return true;
+        });
       })
     );
   }

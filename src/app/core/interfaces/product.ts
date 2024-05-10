@@ -6,8 +6,8 @@ export interface Product {
   discount: number;
   inStock: boolean;
   images: string[];
-  colors: string[];
-  sizes: string[];
+  colorId: string;
+  size: string;
   reviews: {
     stars: number;
     count: number;
