@@ -1,0 +1,12 @@
+.review {
+  border: 1px solid var(--neutral-white-w100);
+  border-radius: 100px;
+  padding: 2px 16px;
+  width: 167px;
+  height: 28px;
+  background-color: var(--neutral-white-w100);
+  color: var(--neutral-black-b500);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

@@ -24,6 +24,14 @@ export class CategoryFacade {
   }
 
   getCategoryById(id: string) {
-    return this.categoryService.getCategoryById(id);
+    return this.categoryService.getCategoryById(id).pipe(
+      map(
+        (category) =>
+          ({
+            ...category,
+            id,
+          } as Category)
+      )
+    );
   }
 }

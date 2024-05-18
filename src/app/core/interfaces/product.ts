@@ -1,3 +1,7 @@
+import { Size } from '../types/size.type';
+import { Category } from './category';
+import { Color } from './color';
+
 export interface Product {
   id: string;
   name: string;
@@ -7,10 +11,15 @@ export interface Product {
   inStock: boolean;
   images: string[];
   colorId: string;
-  size: string;
-  reviews: {
-    stars: number;
-    count: number;
-  };
+  size: Size;
+  reviews: Review;
   categoryId: string;
+  cover?: string;
+  category: Category;
+  color: Color;
+}
+
+export interface Review {
+  stars: number;
+  count: number;
 }

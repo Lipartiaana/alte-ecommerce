@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { CategoryFacade } from '../../facades/category.facade';
@@ -10,10 +10,10 @@ import { ColorItemComponent } from '../../components/color-item/color-item.compo
 import { SIZES, Size } from '../../core/types/size.type';
 import { ProductItemComponent } from '../../components/product-item/product-item.component';
 import { ProductFacade } from '../../facades/product.facade';
-import { Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { Category } from '../../core/interfaces/category';
-import { Product } from '../../core/interfaces/product';
 import { Color } from '../../core/interfaces/color';
+import { SizeItemComponent } from '../../components/size-item/size-item.component';
 
 @Component({
   selector: 'alte-categories',
@@ -26,6 +26,7 @@ import { Color } from '../../core/interfaces/color';
     FilterCardCheckboxItemComponent,
     ColorItemComponent,
     ProductItemComponent,
+    SizeItemComponent,
   ],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss',

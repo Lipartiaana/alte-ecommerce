@@ -1,1 +1,28 @@
-<p>product works!</p>
+@if(product$ |async; as product){
+<alte-breadcrumb [currentPage]="product.name" />
+
+<div class="container product">
+  <div class="product--images">
+    <img [src]="product.cover" />
+  </div>
+  <div class="product--info">
+    <h1>{{ product.name }}</h1>
+    <div class="product--info__stock-reviews">
+      <alte-review *ngIf="product.reviews" [review]="product.reviews" />
+      <alte-stock-check *ngIf="product?.inStock" [inStock]="product?.inStock" />
+    </div>
+    <div class="product--info__price">
+      {{ product?.price | currency : "USD" : "$" }}
+    </div>
+    <div class="product--info__colors">
+      <div>Available Colors</div>
+      <alte-color-item [color]="product.color" />
+    </div>
+    <div class="product--info__sizes">
+      <div>Available Sizes</div>
+      <alte-size-item [size]="product.size" />
+    </div>
+  </div>
+</div>
+
+}

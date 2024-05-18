@@ -1,4 +1,4 @@
-<alte-breadcrumb />
+<alte-breadcrumb hasBackground currentPage="Search" />
 
 <div class="container category">
   <div class="category__side">
@@ -31,13 +31,11 @@
       <alte-filter-card name="Size"
         ><div class="flex-row filter-size-content">
           @for (size of sizes; track size) {
-          <div
-            class="size"
-            [class.active]="size === selectedSize"
-            (click)="selectSize(size)"
-          >
-            {{ size }}
-          </div>
+          <alte-size-item
+            [size]="size"
+            [selected]="size === selectedSize"
+            (select)="selectSize($event)"
+          />
           }
         </div>
       </alte-filter-card>

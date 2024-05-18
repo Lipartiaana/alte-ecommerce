@@ -1,13 +1,13 @@
-<div class="product-item">
+<div [routerLink]="['/product', product?.id]" class="product-item">
   <div class="product-item__image">
-    <img src="assets/cover.png" alt="product" />
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/alte-ecommerce-68ebf.appspot.com/o/products%2Fcover-1.png?alt=media&token=adbb1c8b-8b37-4ffa-8138-d7d7c54172c5"
+      alt="product"
+    />
   </div>
-
   <div class="product-item__name">{{ product?.name }}</div>
   <div class="product-item__info">
-    <div *ngIf="product?.inStock" class="product-item__info--stock">
-      {{ product?.inStock | stock }}
-    </div>
+    <alte-stock-check *ngIf="product?.inStock" [inStock]="product?.inStock" />
     <div class="product-item__info--price">
       {{ product?.price | currency : "USD" : "$" }}
     </div>

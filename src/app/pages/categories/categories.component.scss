@@ -49,23 +49,4 @@
 .filter-size-content {
   gap: 10px;
   flex-wrap: wrap;
-
-  .size {
-    border: 1px solid var(--neutral-black-b100);
-    border-radius: 4px;
-    height: 40px;
-    min-width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    padding: 8px;
-    cursor: pointer;
-
-    &.active,
-    &:hover {
-      border-color: var(--neutral-black-b900);
-      color: var(--neutral-black-b900);
-    }
-  }
 }
