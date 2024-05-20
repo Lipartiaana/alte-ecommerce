@@ -14,11 +14,19 @@ import { Component, Input, booleanAttribute } from '@angular/core';
     '[class.alte-button--link]': 'theme === "link"',
     '[class.alte-button--outline-black]': 'theme === "outline-black"',
     '[class.alte-button--block]': 'block',
+    '[class.alte-button--icon]': 'theme === "icon"',
+    '[class.alte-button--outline-icon]': 'theme === "outline-icon"',
   },
 })
 export class ButtonComponent {
   @Input() size: 'default' | 'small' = 'default';
-  @Input() theme: 'primary' | 'outline' | 'link' | 'outline-black' = 'primary';
+  @Input() theme:
+    | 'primary'
+    | 'outline'
+    | 'link'
+    | 'outline-black'
+    | 'icon'
+    | 'outline-icon' = 'primary';
   @Input() disabled: boolean = false;
   @Input({
     transform: booleanAttribute,

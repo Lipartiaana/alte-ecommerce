@@ -1,0 +1,17 @@
+.key-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .left,
+  .right {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 175%;
+    color: var(--neutral-black-b500);
+  }
+
+  .right {
+    color: var(--neutral-black-b900);
+  }
+}

@@ -42,7 +42,8 @@
   </div>
 
   <div class="profile">
-    <div class="profile__item">
+    <div class="profile__item" [routerLink]="['/profile', 'cart']">
+      <div>{{ cartCount$ | async | currency : "USD" : "$" }}</div>
       <img src="assets/icons/Cart.svg" alt="cart" />
     </div>
 

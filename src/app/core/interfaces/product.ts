@@ -17,6 +17,7 @@ export interface Product {
   cover?: string;
   category: Category;
   color: Color;
+  quantity: number;
 }
 
 export interface Review {

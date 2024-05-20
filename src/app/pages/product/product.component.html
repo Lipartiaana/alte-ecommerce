@@ -22,6 +22,38 @@
       <div>Available Sizes</div>
       <alte-size-item [size]="product.size" />
     </div>
+    <div class="product--info__quantity">
+      <div>Quantity</div>
+      <alte-quantity-input [(quantity)]="quantity" />
+    </div>
+    <div class="product--info__add-to-cart">
+      <alte-button
+        theme="primary"
+        class="add-to-cart-btn"
+        (click)="addToCart(product)"
+        >Add to cart</alte-button
+      >
+      <alte-button theme="outline-icon" (click)="addToWishList()">
+        <img src="assets/icons/Heart.svg"
+      /></alte-button>
+    </div>
+  </div>
+</div>
+
+<div class="container product--info__description">
+  <h2>Detail</h2>
+  <div
+    class="content"
+    [innerHTML]="sanitizer.bypassSecurityTrustHtml(product.description)"
+  ></div>
+</div>
+
+<div class="container product--info__related">
+  <h2>Related Products</h2>
+  <div class="products">
+    @for (relatedProduct of relatedProducts$ | async; track relatedProduct.id){
+    <alte-product-item [product]="relatedProduct" />
+    }
   </div>
 </div>
 

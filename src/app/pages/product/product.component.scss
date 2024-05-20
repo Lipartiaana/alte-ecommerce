@@ -41,7 +41,8 @@
       }
 
       &__colors,
-      &__sizes {
+      &__sizes,
+      &__quantity {
         font-family: var(--font-family);
         font-weight: 500;
         font-size: 12px;
@@ -53,6 +54,48 @@
         display: flex;
         flex-direction: column;
         margin-top: 8px;
+      }
+
+      &__quantity {
+        margin-top: 32px;
+      }
+
+      &__add-to-cart {
+        margin-top: 32px;
+        display: flex;
+        gap: 16px;
+
+        .add-to-cart-btn {
+          width: 60%;
+        }
+      }
+
+      &__description,
+      &__related {
+        margin-top: 48px;
+
+        h2 {
+          font-family: var(--font-family);
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 200%;
+          color: var(--neutral-black-b900);
+        }
+
+        .content {
+          font-family: var(--font-family);
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 175%;
+          color: var(--neutral-black-b500);
+        }
+
+        .products {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 16px;
+          margin-top: 16px;
+        }
       }
     }
   }

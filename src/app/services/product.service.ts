@@ -14,4 +14,11 @@ export class ProductService extends ApiService {
   getProduct(id: string) {
     return this.get<FirebaseDocument<Product>>(`products/${id}.json`);
   }
+
+  getRelatedProducts(categoryId: string) {
+    return this.get<FirebaseDocument<Product>[]>('products.json', {
+      orderBy: '"categoryId"',
+      equalTo: `"${categoryId}"`,
+    });
+  }
 }

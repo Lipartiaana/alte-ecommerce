@@ -6,17 +6,66 @@
   cursor: pointer;
   outline: none;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &--default {
     width: 133px;
     height: 44px;
     padding: 12px 24px;
+
+    &.alte-button--icon {
+      width: 44px;
+      padding: unset;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &.alte-button--outline-icon {
+      width: 44px;
+      padding: unset;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--neutral-white-w900);
+      border: 1px solid var(--neutral-black-b200);
+      color: var(--neutral-black-b500);
+
+      &:hover {
+        background: var(--neutral-white-w200);
+      }
+    }
   }
 
   &--small {
     height: 40px;
     width: 125px;
     padding: 12px 20px;
+
+    &.alte-button--icon {
+      width: 40px;
+      padding: unset;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &.alte-button--outline-icon {
+      width: 40px;
+      padding: unset;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--neutral-white-w900);
+      border: 1px solid var(--neutral-black-b200);
+      color: var(--neutral-black-b500);
+
+      &:hover {
+        background: var(--neutral-white-w200);
+      }
+    }
   }
 
   &--primary {
