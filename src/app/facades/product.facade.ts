@@ -14,7 +14,6 @@ export class ProductFacade {
     colorId?: string;
     size?: string;
   }) {
-    console.log(params);
     return this.productService.getProducts().pipe(
       map((products) => {
         return Object.keys(products).map(

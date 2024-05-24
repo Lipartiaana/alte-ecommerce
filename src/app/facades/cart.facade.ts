@@ -10,6 +10,12 @@ export class CartFacade {
 
   cart$ = this.cart.asObservable();
 
+  get allProducts() {
+    return this.cart.getValue();
+  }
+
+  feePercentage = 0.18;
+
   constructor() {
     this.cart.next(this.getFromLocalStorage());
   }

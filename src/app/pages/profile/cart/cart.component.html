@@ -1,13 +1,57 @@
 <alte-auth-head title="My Cart" />
 
 <div class="container cart">
-  <div class="cart__list">cart table</div>
+  <div class="cart__list">
+    <h4>Your Cart</h4>
+    <div class="divider"></div>
+    @for(cart of carts$ | async; track cart){
+    <alte-cart-item
+      [product]="cart"
+      (remove)="removeFromCart($event)"
+      (update)="updateToCart($event)"
+    />
+    }@empty {
+    <div class="empty-cart">Your Cart is Empty</div>
+    }
+  </div>
   <div class="cart__details">
     <div class="title">Order Summary</div>
     <div class="finance-detail">
-      <alte-key-value key="Subtotal" value="$0.00" />
+      <alte-key-value
+        key="Subtotal"
+        [value]="(sum$ | async) || 0 | currency : 'USD' : '$'"
+      />
       <alte-key-value key="Shipping" value="free" />
-      <alte-key-value key="Tax" value="$0.00" />
+      <alte-key-value
+        key="Tax"
+        [value]="
+          ((sum$ | async) || 0) * cartFacade.feePercentage
+            | currency : 'USD' : '$'
+        "
+      />
+      <div class="divider"></div>
+      <alte-key-value
+        key="Total"
+        [value]="
+          ((sum$ | async) || 0) +
+            ((sum$ | async) || 0) * cartFacade.feePercentage
+            | currency : 'USD' : '$'
+        "
+      />
+    </div>
+    <button
+      alte-button
+      block
+      class="cart__checkout"
+      [disabled]="(sum$ | async) === 0"
+      (click)="checkout()"
+    >
+      Checkout
+    </button>
+    <div class="cart__continue-shopping">
+      <a class="cart__continue-shopping--link" routerLink="/"
+        >Continue Shopping</a
+      >
     </div>
   </div>
 </div>

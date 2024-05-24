@@ -1,0 +1,166 @@
+<alte-auth-head title="Checkout" />
+
+<div class="container checkout">
+  <div class="checkout__list">
+    <h4>Shipping Address</h4>
+    <form [formGroup]="form">
+      <div class="one_column">
+        <alte-input label="Street Adress" formControlName="address" />
+        <div
+          class="error"
+          *ngIf="
+            form.get('address')?.hasError('required') &&
+            form.get('address')?.touched
+          "
+        >
+          Adress is required
+        </div>
+      </div>
+      <div class="two_column">
+        <div class="two-column__input">
+          <alte-input label="City" formControlName="city" />
+          <div
+            class="error"
+            *ngIf="
+              form.get('city')?.hasError('required') &&
+              form.get('city')?.touched
+            "
+          >
+            City is required
+          </div>
+        </div>
+        <div class="two-column__input">
+          <alte-input label="State" formControlName="state" />
+          <div
+            class="error"
+            *ngIf="
+              form.get('state')?.hasError('required') &&
+              form.get('state')?.touched
+            "
+          >
+            State is required
+          </div>
+        </div>
+      </div>
+      <div class="two_column">
+        <div class="two-column__input">
+          <alte-input label="Zip Code" formControlName="zipCode" />
+          <div
+            class="error"
+            *ngIf="
+              form.get('zipCode')?.hasError('required') &&
+              form.get('zipCode')?.touched
+            "
+          >
+            Zip Code is required
+          </div>
+        </div>
+        <div class="two-column__input">
+          <alte-input label="Country" formControlName="country" />
+          <div
+            class="error"
+            *ngIf="
+              form.get('country')?.hasError('required') &&
+              form.get('country')?.touched
+            "
+          >
+            Country is required
+          </div>
+        </div>
+      </div>
+      <div class="two_column personal-info">
+        <div class="two-column__input">
+          <alte-input label="Email" formControlName="email" />
+          <div
+            class="error"
+            *ngIf="
+              form.get('email')?.hasError('email') && form.get('email')?.touched
+            "
+          >
+            Email is not valid
+          </div>
+          <div
+            class="error"
+            *ngIf="
+              form.get('email')?.hasError('required') &&
+              form.get('email')?.touched
+            "
+          >
+            Email is required
+          </div>
+        </div>
+        <div class="two-column__input">
+          <alte-input label="Full name" formControlName="fullName" />
+          <div
+            class="error"
+            *ngIf="
+              form.get('fullName')?.hasError('required') &&
+              form.get('fullName')?.touched
+            "
+          >
+            Full name is required
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="checkout__details">
+    <div class="title">Your Order</div>
+    <div class="in-cart">
+      <div class="in-cart__images">
+        @for(cart of carts$ | async; track cart){
+        <div class="in-cart__images--image">
+          <img [src]="cart.cover" [width]="24" />
+        </div>
+        }
+      </div>
+
+      <button
+        class="in-cart__edit"
+        alte-button
+        theme="outline"
+        [disabled]="(sum$ | async) === 0"
+        routerLink="/profile/cart"
+      >
+        Edit Cart
+      </button>
+    </div>
+    <div class="finance-detail">
+      <alte-key-value
+        key="Subtotal"
+        [value]="(sum$ | async) || 0 | currency : 'USD' : '$'"
+      />
+      <alte-key-value key="Shipping" value="free" />
+      <alte-key-value
+        key="Tax"
+        [value]="
+          ((sum$ | async) || 0) * cartFacade.feePercentage
+            | currency : 'USD' : '$'
+        "
+      />
+      <div class="divider"></div>
+      <alte-key-value
+        key="Total"
+        [value]="
+          ((sum$ | async) || 0) +
+            ((sum$ | async) || 0) * cartFacade.feePercentage
+            | currency : 'USD' : '$'
+        "
+      />
+    </div>
+    <button
+      alte-button
+      block
+      class="checkout__checkout"
+      [disabled]="(sum$ | async) === 0"
+      (click)="checkout()"
+    >
+      Place Order
+    </button>
+    <div class="checkout__continue-shopping">
+      <a class="checkout__continue-shopping--link" routerLink="/"
+        >Continue Shopping</a
+      >
+    </div>
+  </div>
+</div>

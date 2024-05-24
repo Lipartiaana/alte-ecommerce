@@ -1,7 +1,7 @@
 import { Component, Input, booleanAttribute } from '@angular/core';
 
 @Component({
-  selector: 'alte-button',
+  selector: 'button[alte-button], a[alte-button]',
   standalone: true,
   imports: [],
   template: '<ng-content/>',

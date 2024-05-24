@@ -27,15 +27,17 @@
       <alte-quantity-input [(quantity)]="quantity" />
     </div>
     <div class="product--info__add-to-cart">
-      <alte-button
+      <button
+        alte-button
         theme="primary"
         class="add-to-cart-btn"
         (click)="addToCart(product)"
-        >Add to cart</alte-button
       >
-      <alte-button theme="outline-icon" (click)="addToWishList()">
-        <img src="assets/icons/Heart.svg"
-      /></alte-button>
+        Add to cart
+      </button>
+      <button alte-button theme="outline-icon" (click)="addToWishList()">
+        <img src="assets/icons/Heart.svg" />
+      </button>
     </div>
   </div>
 </div>

@@ -15,5 +15,5 @@ export class KeyValueComponent {
   @Input({
     required: true,
   })
-  value!: string;
+  value!: any;
 }
