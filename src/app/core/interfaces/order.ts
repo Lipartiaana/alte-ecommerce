@@ -1,12 +1,15 @@
 import { Product } from './product';
 import { User } from './user';
 
+export type OrderStatus = 'pending' | 'completed' | 'canceled';
+
 export interface Order {
+  id?: string;
   userId: string;
   user: User;
   products: Product[];
   total: number;
-  status: 'pending' | 'completed' | 'canceled';
+  status: OrderStatus;
   createdAt: Date;
   shipping: {
     street: string;

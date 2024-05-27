@@ -39,12 +39,13 @@ export const profileRoutes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'myProfile',
+        redirectTo: 'orders',
         pathMatch: 'full',
       },
       {
         path: 'orders',
-        component: OrdersComponent,
+        loadChildren: () =>
+          import('./orders/order.routes').then((m) => m.orderRoutes),
       },
       {
         path: 'wishlist',

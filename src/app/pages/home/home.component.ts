@@ -1,10 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { HeroBannerComponent } from '../../components/hero-banner/hero-banner.component';
-import { FeatureCardComponent } from '../../components/feature-card/feature-card.component';
 import { FEATURES } from '../../data/features';
-import { ProductCardComponent } from '../../components/product-card/product-card.component';
-import { BESTSELLERS } from '../../data/bestsellers';
 import { AsyncPipe, JsonPipe } from '@angular/common';
+import { FeatureCardComponent } from '../../components/feature-card/feature-card.component';
+import { Product } from '../../core/interfaces/product';
+import { ProductFacade } from '../../facades/product.facade';
+import { Observable, switchMap } from 'rxjs';
+import { ProductItemComponent } from '../../components/product-item/product-item.component';
+import { RouterLink } from '@angular/router';
+import { ButtonComponent } from '../../ui/button/button.component';
 
 @Component({
   selector: 'alte-home',
@@ -14,12 +18,17 @@ import { AsyncPipe, JsonPipe } from '@angular/common';
   imports: [
     HeroBannerComponent,
     FeatureCardComponent,
-    ProductCardComponent,
     AsyncPipe,
     JsonPipe,
+    ProductItemComponent,
+    RouterLink,
+    ButtonComponent,
   ],
 })
 export class HomeComponent {
   features = FEATURES;
-  bestsellers = BESTSELLERS;
+
+  productFacade = inject(ProductFacade);
+
+  latestProducts$: Observable<Product[]> = this.productFacade.getBestSelling();
 }

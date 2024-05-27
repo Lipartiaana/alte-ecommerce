@@ -7,38 +7,81 @@
   margin-bottom: 48px;
 }
 
-.products {
-  margin-top: 72px;
+.product-latest {
+  h3 {
+    text-align: center;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--neutral-black-b900);
+  }
 
-  .heading {
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    display: grid;
+    gap: 24px;
+    margin: 48px auto;
+  }
+}
+
+.promo {
+  border-bottom: 1px solid var(--neutral-white-w100);
+  border-top: 1px solid var(--neutral-white-w100);
+  border-radius: 4px;
+  width: 100%;
+  height: 324px;
+  background: linear-gradient(90deg, #f6f6f6 0%, rgba(255, 255, 255, 0) 100%);
+  margin: 88px 0;
+
+  &--container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__image {
+    img {
+      width: 225px;
+      height: 311px;
+    }
+  }
+
+  &__content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    margin-bottom: 80px;
+    gap: 24px;
+    max-width: 450px;
 
-    &__small {
-      font-family: var(--font-family);
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 200%;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--neutral-black-b300);
-      transform: translateX(-30px);
-    }
-
-    &__big {
+    &--title {
       font-family: var(--font-family);
       font-weight: 700;
       font-size: 24px;
       color: var(--neutral-black-b900);
     }
-  }
 
-  .bestsellers {
-    display: flex;
-    justify-content: space-between;
+    &--description {
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 175%;
+      color: var(--neutral-black-b500);
+    }
+
+    &--button {
+      width: 177px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: var(--font-family);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 175%;
+      color: var(--neutral-white-w900);
+
+      img {
+        color: var(--neutral-white-w900);
+        fill: var(--neutral-white-w100);
+      }
+    }
   }
 }

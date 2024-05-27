@@ -10,19 +10,44 @@
   }
 </div>
 
-<div class="container products">
-  <div class="heading">
-    <div class="heading__small">Shop Now</div>
-    <div class="heading__big">Best Selling</div>
+<div class="container product-latest">
+  <h3>Best selling</h3>
+  <div class="products">
+    @for (relatedProduct of latestProducts$ | async; track relatedProduct.id){
+    <alte-product-item [product]="relatedProduct" />
+    }
   </div>
-  <div class="bestsellers">
-    @for (bestseller of bestsellers; track bestseller) {
-    <alte-product-card
-      [image]="bestseller.image"
-      [title]="bestseller.title"
-      [isInStock]="bestseller.isInStock"
-      [price]="bestseller.price"
-    />
+</div>
+
+<div class="promo">
+  <div class="container promo--container">
+    <div class="promo__content">
+      <div class="promo__content--title">Browse Our Fashion Paradise!</div>
+      <div class="promo__content--description">
+        Step into a world of style and explore our diverse collection of
+        clothing categories.
+      </div>
+
+      <button
+        alte-button
+        [routerLink]="'/category'"
+        class="promo__content--button"
+      >
+        <span>Start Browsing</span>
+        <img src="assets/icons/Arrow%20Right.svg" />
+      </button>
+    </div>
+    <div class="promo__image">
+      <img src="assets/images/promo-image.png" />
+    </div>
+  </div>
+</div>
+
+<div class="container product-latest">
+  <h3>Newest Products</h3>
+  <div class="products">
+    @for (relatedProduct of latestProducts$ | async; track relatedProduct.id){
+    <alte-product-item [product]="relatedProduct" />
     }
   </div>
 </div>

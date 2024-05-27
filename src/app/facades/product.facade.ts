@@ -76,4 +76,21 @@ export class ProductFacade {
       })
     );
   }
+
+  getBestSelling() {
+    return this.productService.getProducts().pipe(
+      map((products) => {
+        return Object.keys(products).map(
+          (key: any) =>
+            ({
+              ...products[key],
+              id: key,
+            } as Product)
+        );
+      }),
+      map((products) => {
+        return products.slice(0, 4);
+      })
+    );
+  }
 }

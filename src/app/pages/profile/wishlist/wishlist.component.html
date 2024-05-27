@@ -1,1 +1,20 @@
-<p>wishlist works!</p>
+@if (wishlists$ | async; as wishlists) {
+
+<div class="wishlists">
+  @for (wishlist of wishlists; track wishlist.id) {
+  <div class="wishlists__item">
+    <div class="delete-wishlist">
+      <button
+        class="delete-wishlist-btn"
+        alte-button
+        theme="outline-icon"
+        (click)="deleteWishlist(wishlist)"
+      >
+        <img src="assets/icons/X.svg" />
+      </button>
+    </div>
+    <alte-product-item [product]="wishlist?.product" />
+  </div>
+  }
+</div>
+}

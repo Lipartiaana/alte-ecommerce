@@ -1,5 +1,13 @@
-import { Component, Sanitizer, inject } from '@angular/core';
-import { Observable, map, mergeMap, share, switchMap } from 'rxjs';
+import { Component, OnDestroy, Sanitizer, inject } from '@angular/core';
+import {
+  Observable,
+  Subject,
+  map,
+  mergeMap,
+  share,
+  switchMap,
+  takeUntil,
+} from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe, CurrencyPipe, JsonPipe, NgIf } from '@angular/common';
 import { ProductFacade } from '../../facades/product.facade';
@@ -16,6 +24,8 @@ import { ButtonComponent } from '../../ui/button/button.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ProductItemComponent } from '../../components/product-item/product-item.component';
 import { CartFacade } from '../../facades/cart.facade';
+import { WishlistFacade } from '../../facades/wishlist.facade';
+import { subscribe } from 'diagnostics_channel';
 
 @Component({
   selector: 'alte-product',
@@ -37,15 +47,18 @@ import { CartFacade } from '../../facades/cart.facade';
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',
 })
-export class ProductComponent {
+export class ProductComponent implements OnDestroy {
   route = inject(ActivatedRoute);
   productFacade = inject(ProductFacade);
   categoryFacade = inject(CategoryFacade);
   colorFacade = inject(ColorFacade);
   cartFacade = inject(CartFacade);
+  wishlistFacade = inject(WishlistFacade);
   sanitizer = inject(DomSanitizer);
 
   quantity: number = 1;
+
+  sub$ = new Subject();
 
   product$ = this.route.params.pipe(
     switchMap((params: any) =>
@@ -87,5 +100,18 @@ export class ProductComponent {
     this.cartFacade.addToCrat(product, this.quantity);
   }
 
-  addToWishList() {}
+  addToWishList(product: Product) {
+    this.wishlistFacade
+      .addWishlist(product)
+      .pipe(takeUntil(this.sub$))
+      .subscribe((res) => {
+        console.log(res);
+        alert('Product added to wishlist');
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.next(null);
+    this.sub$.complete();
+  }
 }

@@ -1,0 +1,55 @@
+@if(order$| async; as order ){
+<div class="order">
+  <div>
+    <h2>Order Details</h2>
+    <div class="order__details">
+      <alte-key-value key="Order ID" [value]="order.id"></alte-key-value>
+      <alte-key-value
+        key="Order Date"
+        [value]="order.createdAt | date : 'dd/MM/yyyy HH:mm'"
+      ></alte-key-value>
+      <alte-key-value
+        key="Order Status"
+        [value]="order.status | orderStatus"
+      ></alte-key-value>
+      <alte-key-value
+        key="Total"
+        [value]="order.total | currency : 'USD' : '$'"
+      ></alte-key-value>
+    </div>
+  </div>
+  <div>
+    <h2>Shipping Address</h2>
+    <div class="order__address">
+      <alte-key-value
+        key="Country"
+        [value]="order.shipping.country"
+      ></alte-key-value>
+      <alte-key-value
+        key="State"
+        [value]="order.shipping.state"
+      ></alte-key-value>
+      <alte-key-value key="City" [value]="order.shipping.city"></alte-key-value>
+      <alte-key-value
+        key="Street"
+        [value]="order.shipping.street"
+      ></alte-key-value>
+      <alte-key-value
+        key="Zip Code"
+        [value]="order.shipping.zipCode"
+      ></alte-key-value>
+      <alte-key-value
+        key="Email"
+        [value]="order.shipping.email"
+      ></alte-key-value>
+    </div>
+  </div>
+  <div class="order__produts">
+    <h2>Products</h2>
+    <div class="products">
+      @for (product of order.products; track product.id) {
+      <alte-order-item [product]="product" />}
+    </div>
+  </div>
+</div>
+}

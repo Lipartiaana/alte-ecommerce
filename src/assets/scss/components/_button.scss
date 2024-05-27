@@ -39,7 +39,8 @@
     }
   }
 
-  &--small {
+  &--small,
+  &--extra-small {
     height: 40px;
     width: 125px;
     padding: 12px 20px;
@@ -65,6 +66,19 @@
       &:hover {
         background: var(--neutral-white-w200);
       }
+    }
+  }
+
+  &--extra-small {
+    width: auto;
+    padding: 0 20px;
+
+    &.alte-button-icon {
+      width: 35px;
+    }
+
+    &.alte-button--outline-icon {
+      width: 35px;
     }
   }
 

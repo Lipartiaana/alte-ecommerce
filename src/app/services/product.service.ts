@@ -21,4 +21,11 @@ export class ProductService extends ApiService {
       equalTo: `"${categoryId}"`,
     });
   }
+
+  getBestSelling(categoryId: string) {
+    return this.get<FirebaseDocument<Product>[]>('products.json', {
+      orderBy: '"categoryId"',
+      equalTo: `"${categoryId}"`,
+    });
+  }
 }
