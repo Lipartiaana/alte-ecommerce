@@ -1,9 +1,6 @@
 <div [routerLink]="['/product', product?.id]" class="product-item">
   <div class="product-item__image">
-    <img
-      src="https://firebasestorage.googleapis.com/v0/b/alte-ecommerce-68ebf.appspot.com/o/products%2Fcover-1.png?alt=media&token=adbb1c8b-8b37-4ffa-8138-d7d7c54172c5"
-      alt="product"
-    />
+    <img [src]="product?.images?.[0]" alt="product" />
   </div>
   <div class="product-item__name">{{ product?.name }}</div>
   <div class="product-item__info">
